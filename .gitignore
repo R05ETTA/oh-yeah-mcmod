@@ -1,0 +1,65 @@
+# gradle
+
+.gradle/
+build/
+out/
+classes/
+
+# eclipse
+
+*.launch
+
+# idea
+
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# vscode
+
+.settings/
+.vscode/
+bin/
+.classpath
+.project
+
+# macos
+
+*.DS_Store
+
+# fabric
+
+run/
+
+# java
+
+hs_err_*.log
+replay_*.log
+*.hprof
+*.jfr
+
+# Gradle/Maven
+.gradle/
+gradlew
+gradlew.bat
+build/
+out/
+*.iml
+*.ipr
+*.iws
+.idea/
+.vscode/
+
+# Minecraft Mod 专属
+run/
+logs/
+debug/
+*.class
+*.jar
+lib/
+mods/
+config/
+
+# vibe
+.vibecoding/
