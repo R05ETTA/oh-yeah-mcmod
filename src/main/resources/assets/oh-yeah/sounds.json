@@ -1,0 +1,125 @@
+{
+  "tiansuluo.ambient": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.ambient",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo/ambient_01"
+      }
+    ]
+  },
+  "tiansuluo.rare_call": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.rare_call",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo/rare_call_01"
+      }
+    ]
+  },
+  "tiansuluo.hurt": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.hurt",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo/hurt_01"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo/hurt_02"
+      }
+    ]
+  },
+  "tiansuluo.death": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.death",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo/death_01"
+      }
+    ]
+  },
+  "tiansuluo.step_soft": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.step_soft",
+    "sounds": [
+      {
+        "name": "minecraft:block/wool/step"
+      }
+    ]
+  },
+  "tiansuluo.eat": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.eat",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo/eat_01"
+      }
+    ]
+  },
+  "tiansuluo.eat_favorite": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.eat_favorite",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo/eat_favorite_01"
+      }
+    ]
+  },
+  "tiansuluo.tempted": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.tempted",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo/tempted_01"
+      }
+    ]
+  },
+  "tiansuluo.notice_player": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.notice_player",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo/notice_player_01"
+      }
+    ]
+  },
+  "tiansuluo.breed_success": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.breed_success",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo/breed_success_01"
+      }
+    ]
+  },
+  "tiansuluo.attack_shot": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.attack_shot",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo/attack_shot_01"
+      }
+    ]
+  },
+  "tiansuluo.attack_end": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.attack_end",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo/attack_end_01"
+      }
+    ]
+  },
+  "tiansuluo.attack_declare": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.attack_declare",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo/attack_declare_01"
+      }
+    ]
+  },
+  "tiansuluo.grow_up": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.grow_up",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo/breed_success_01"
+      }
+    ]
+  },
+  "tiansuluo.spawn": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.spawn",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo/spawn_01"
+      }
+    ]
+  }
+}

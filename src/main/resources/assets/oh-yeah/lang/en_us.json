@@ -1,0 +1,22 @@
+{
+  "entity.oh-yeah.tiansuluo": "Tiansuluo",
+  "item.oh-yeah.tiansuluo_egg": "Luanluan",
+  "item.oh-yeah.tiansuluo_egg.desc": "A special spawn egg for Tiansuluo",
+  "item.oh-yeah.tiansuluo_egg.desc_2": "Dropped by adult Tiansuluo. Right-click to spawn a Tiansuluo.",
+  "item.oh-yeah.chips": "Chips",
+  "subtitles.oh-yeah.tiansuluo.ambient": "Tiansuluo murmurs softly",
+  "subtitles.oh-yeah.tiansuluo.rare_call": "Tiansuluo calls softly",
+  "subtitles.oh-yeah.tiansuluo.hurt": "Tiansuluo cries out in pain",
+  "subtitles.oh-yeah.tiansuluo.death": "Tiansuluo collapses",
+  "subtitles.oh-yeah.tiansuluo.step_soft": "Tiansuluo shuffles softly",
+  "subtitles.oh-yeah.tiansuluo.eat": "Tiansuluo chews",
+  "subtitles.oh-yeah.tiansuluo.eat_favorite": "Tiansuluo chews happily",
+  "subtitles.oh-yeah.tiansuluo.tempted": "Tiansuluo is tempted",
+  "subtitles.oh-yeah.tiansuluo.notice_player": "Tiansuluo notices someone",
+  "subtitles.oh-yeah.tiansuluo.breed_success": "Tiansuluo chirps happily",
+  "subtitles.oh-yeah.tiansuluo.attack_shot": "Tiansuluo fires Luanluan",
+  "subtitles.oh-yeah.tiansuluo.attack_end": "Tiansuluo ends retaliation",
+  "subtitles.oh-yeah.tiansuluo.attack_declare": "Tiansuluo declares an attack",
+  "subtitles.oh-yeah.tiansuluo.grow_up": "Little Tiansuluo grows up",
+  "subtitles.oh-yeah.tiansuluo.spawn": "A little Tiansuluo is born"
+}

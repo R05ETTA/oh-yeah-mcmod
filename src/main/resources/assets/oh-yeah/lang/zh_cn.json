@@ -1,0 +1,22 @@
+{
+  "entity.oh-yeah.tiansuluo": "天素罗",
+  "item.oh-yeah.tiansuluo_egg": "栾栾",
+  "item.oh-yeah.tiansuluo_egg.desc": "天素罗的特殊刷怪蛋",
+  "item.oh-yeah.tiansuluo_egg.desc_2": "成年天素罗掉落，右键生成天素罗",
+  "item.oh-yeah.chips": "薯片",
+  "subtitles.oh-yeah.tiansuluo.ambient": "天素罗轻声呢喃",
+  "subtitles.oh-yeah.tiansuluo.rare_call": "天素罗轻轻呼唤",
+  "subtitles.oh-yeah.tiansuluo.hurt": "天素罗发出痛叫",
+  "subtitles.oh-yeah.tiansuluo.death": "天素罗瘫软倒下",
+  "subtitles.oh-yeah.tiansuluo.step_soft": "天素罗轻轻挪步",
+  "subtitles.oh-yeah.tiansuluo.eat": "天素罗在咀嚼",
+  "subtitles.oh-yeah.tiansuluo.eat_favorite": "天素罗开心地咀嚼",
+  "subtitles.oh-yeah.tiansuluo.tempted": "天素罗被吸引了",
+  "subtitles.oh-yeah.tiansuluo.notice_player": "天素罗注意到了谁",
+  "subtitles.oh-yeah.tiansuluo.breed_success": "天素罗发出欢快叫声",
+  "subtitles.oh-yeah.tiansuluo.attack_shot": "天素罗喷射栾栾",
+  "subtitles.oh-yeah.tiansuluo.attack_end": "天素罗结束反击",
+  "subtitles.oh-yeah.tiansuluo.attack_declare": "天素罗发出攻击宣言",
+  "subtitles.oh-yeah.tiansuluo.grow_up": "小天素罗长大了",
+  "subtitles.oh-yeah.tiansuluo.spawn": "一只小天素罗诞生了"
+}

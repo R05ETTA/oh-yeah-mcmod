@@ -2,9 +2,7 @@
 	"required": true,
 	"package": "com.oh_yeah.mixin.client",
 	"compatibilityLevel": "JAVA_21",
-	"client": [
-		"ExampleClientMixin"
-	],
+	"client": [],
 	"injectors": {
 		"defaultRequire": 1
 	}

@@ -50,6 +50,7 @@ out/
 *.iws
 .idea/
 .vscode/
+.gradle-user-home/
 
 # Minecraft Mod 专属
 run/
