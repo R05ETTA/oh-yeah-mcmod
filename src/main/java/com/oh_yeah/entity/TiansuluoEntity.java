@@ -308,6 +308,12 @@ public class TiansuluoEntity extends AnimalEntity implements RangedAttackMob {
         this.dataTracker.set(VARIANT_INDEX, variant.ordinal());
     }
 
+    public void markOneShotVoiceAsPlayed(TiansuluoVoiceType type) {
+        if (type.isOneShot()) {
+            this.playedOneShotVoices.add(type);
+        }
+    }
+
     public Identifier getTextureId() {
         VariantConfig cfg = OhYeahConfigManager.getTiansuluoConfig().getVariantConfig(this.getVariant());
         String texture = cfg != null ? cfg.texture() : "textures/entity/tiansuluo.png";
