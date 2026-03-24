@@ -1,8 +1,12 @@
 {
-  "entity.oh-yeah.tiansuluo": "天素罗",
-  "item.oh-yeah.tiansuluo_egg": "栾栾",
-  "item.oh-yeah.tiansuluo_egg.desc": "天素罗的特殊刷怪蛋",
-  "item.oh-yeah.tiansuluo_egg.desc_2": "成年天素罗掉落，右键生成天素罗",
+  "entity.oh-yeah.tiansuluo_pink_scarf": "天素罗_粉围巾",
+  "entity.oh-yeah.tiansuluo_battle_face": "天素罗_战斗脸",
+  "item.oh-yeah.tiansuluo_pink_scarf_egg": "栾栾_粉围巾",
+  "item.oh-yeah.tiansuluo_pink_scarf_egg.desc": "天素罗_粉围巾的特殊栾栾",
+  "item.oh-yeah.tiansuluo_pink_scarf_egg.desc_2": "成年天素罗_粉围巾掉落，右键生成天素罗_粉围巾",
+  "item.oh-yeah.tiansuluo_battle_face_egg": "栾栾_战斗脸",
+  "item.oh-yeah.tiansuluo_battle_face_egg.desc": "天素罗_战斗脸的特殊栾栾",
+  "item.oh-yeah.tiansuluo_battle_face_egg.desc_2": "成年天素罗_战斗脸掉落，右键生成天素罗_战斗脸",
   "item.oh-yeah.chips": "薯片",
   "subtitles.oh-yeah.tiansuluo.ambient": "天素罗轻声呢喃",
   "subtitles.oh-yeah.tiansuluo.rare_call": "天素罗轻轻呼唤",
@@ -18,5 +22,6 @@
   "subtitles.oh-yeah.tiansuluo.attack_end": "天素罗结束反击",
   "subtitles.oh-yeah.tiansuluo.attack_declare": "天素罗发出攻击宣言",
   "subtitles.oh-yeah.tiansuluo.grow_up": "小天素罗长大了",
-  "subtitles.oh-yeah.tiansuluo.spawn": "一只小天素罗诞生了"
+  "subtitles.oh-yeah.tiansuluo.spawn": "一只小天素罗诞生了",
+  "subtitles.oh-yeah.tiansuluo.shear_react": "天素罗抗议你不许这样做"
 }

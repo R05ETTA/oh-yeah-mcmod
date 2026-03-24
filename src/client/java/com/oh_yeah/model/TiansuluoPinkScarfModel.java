@@ -1,7 +1,7 @@
 package com.oh_yeah.model;
 
 import com.oh_yeah.OhYeah;
-import com.oh_yeah.entity.TiansuluoEntity;
+import com.oh_yeah.entity.TiansuluoPinkScarfEntity;
 import net.minecraft.client.model.Dilation;
 import net.minecraft.client.model.ModelData;
 import net.minecraft.client.model.ModelPart;
@@ -15,13 +15,13 @@ import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
-public class TiansuluoModel extends EntityModel<TiansuluoEntity> {
+public class TiansuluoPinkScarfModel extends EntityModel<TiansuluoPinkScarfEntity> {
     public static final EntityModelLayer LAYER_LOCATION =
-            new EntityModelLayer(Identifier.of(OhYeah.MOD_ID, "tiansuluo"), "main");
+            new EntityModelLayer(Identifier.of(OhYeah.MOD_ID, "tiansuluo_pink_scarf"), "main");
 
     private final ModelPart root;
 
-    public TiansuluoModel(ModelPart root) {
+    public TiansuluoPinkScarfModel(ModelPart root) {
         this.root = root.getChild("root");
     }
 
@@ -1766,7 +1766,7 @@ public static TexturedModelData getTexturedModelData() {
     }
 
     @Override
-    public void setAngles(TiansuluoEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+    public void setAngles(TiansuluoPinkScarfEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
     }
 
     @Override

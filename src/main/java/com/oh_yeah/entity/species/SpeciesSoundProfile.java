@@ -17,6 +17,7 @@ public record SpeciesSoundProfile(
         SoundEvent attackEnd,
         SoundEvent attackDeclare,
         SoundEvent growUp,
-        SoundEvent spawn
+        SoundEvent spawn,
+        SoundEvent shearReact
 ) {
 }

@@ -14,7 +14,9 @@ public enum TiansuluoVoiceType {
     DEATH("death", 90, 36, false),
     NOTICE_PLAYER("notice_player", 100, 30, true),
     GROW_UP("grow_up", 100, 36, true),
-    SPAWN("spawn", 100, 30, true);
+    SPAWN("spawn", 100, 30, true),
+    // Shear-triggered protest line that should interrupt every regular Tiansuluo voice.
+    SHEAR_REACT("shear_react", 101, 30, false);
 
     private final String configKey;
     private final int priority;

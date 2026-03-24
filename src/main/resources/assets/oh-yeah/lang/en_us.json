@@ -1,8 +1,12 @@
 {
-  "entity.oh-yeah.tiansuluo": "Tiansuluo",
-  "item.oh-yeah.tiansuluo_egg": "Luanluan",
-  "item.oh-yeah.tiansuluo_egg.desc": "A special spawn egg for Tiansuluo",
-  "item.oh-yeah.tiansuluo_egg.desc_2": "Dropped by adult Tiansuluo. Right-click to spawn a Tiansuluo.",
+  "entity.oh-yeah.tiansuluo_pink_scarf": "TiansuluoPinkScarf",
+  "entity.oh-yeah.tiansuluo_battle_face": "TiansuluoBattleFace",
+  "item.oh-yeah.tiansuluo_pink_scarf_egg": "Pink Scarf Luanluan",
+  "item.oh-yeah.tiansuluo_pink_scarf_egg.desc": "A special Luanluan for TiansuluoPinkScarf",
+  "item.oh-yeah.tiansuluo_pink_scarf_egg.desc_2": "Dropped by adult TiansuluoPinkScarf. Right-click to spawn a TiansuluoPinkScarf.",
+  "item.oh-yeah.tiansuluo_battle_face_egg": "Battle Face Luanluan",
+  "item.oh-yeah.tiansuluo_battle_face_egg.desc": "A special Luanluan for TiansuluoBattleFace",
+  "item.oh-yeah.tiansuluo_battle_face_egg.desc_2": "Dropped by adult TiansuluoBattleFace. Right-click to spawn a TiansuluoBattleFace.",
   "item.oh-yeah.chips": "Chips",
   "subtitles.oh-yeah.tiansuluo.ambient": "Tiansuluo murmurs softly",
   "subtitles.oh-yeah.tiansuluo.rare_call": "Tiansuluo calls softly",
@@ -18,5 +22,6 @@
   "subtitles.oh-yeah.tiansuluo.attack_end": "Tiansuluo ends retaliation",
   "subtitles.oh-yeah.tiansuluo.attack_declare": "Tiansuluo declares an attack",
   "subtitles.oh-yeah.tiansuluo.grow_up": "Little Tiansuluo grows up",
-  "subtitles.oh-yeah.tiansuluo.spawn": "A little Tiansuluo is born"
+  "subtitles.oh-yeah.tiansuluo.spawn": "A little Tiansuluo is born",
+  "subtitles.oh-yeah.tiansuluo.shear_react": "Tiansuluo interrupts"
 }

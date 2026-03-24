@@ -22,6 +22,7 @@ public final class ModSoundEvents {
     public static final SoundEvent TIANSULUO_ATTACK_DECLARE = register("tiansuluo.attack_declare");
     public static final SoundEvent TIANSULUO_GROW_UP = register("tiansuluo.grow_up");
     public static final SoundEvent TIANSULUO_SPAWN = register("tiansuluo.spawn");
+    public static final SoundEvent TIANSULUO_SHEAR_REACT = register("tiansuluo.shear_react");
 
     private ModSoundEvents() {
     }

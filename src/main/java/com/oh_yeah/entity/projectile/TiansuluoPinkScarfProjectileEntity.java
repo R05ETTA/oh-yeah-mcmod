@@ -15,24 +15,24 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.world.World;
 
-public class TiansuluoProjectileEntity extends ThrownItemEntity {
+public class TiansuluoPinkScarfProjectileEntity extends ThrownItemEntity {
     private float damage = 1.0F;
 
-    public TiansuluoProjectileEntity(World world, LivingEntity owner) {
-        super(ModEntityTypes.TIANSULUO_PROJECTILE, owner, world);
+    public TiansuluoPinkScarfProjectileEntity(World world, LivingEntity owner) {
+        super(ModEntityTypes.TIANSULUO_PINK_SCARF_PROJECTILE, owner, world);
     }
 
-    public TiansuluoProjectileEntity(World world, double x, double y, double z) {
-        super(ModEntityTypes.TIANSULUO_PROJECTILE, x, y, z, world);
+    public TiansuluoPinkScarfProjectileEntity(World world, double x, double y, double z) {
+        super(ModEntityTypes.TIANSULUO_PINK_SCARF_PROJECTILE, x, y, z, world);
     }
 
-    public TiansuluoProjectileEntity(net.minecraft.entity.EntityType<? extends TiansuluoProjectileEntity> entityType, World world) {
+    public TiansuluoPinkScarfProjectileEntity(net.minecraft.entity.EntityType<? extends TiansuluoPinkScarfProjectileEntity> entityType, World world) {
         super(entityType, world);
     }
 
     @Override
     protected Item getDefaultItem() {
-        return ModItems.TIANSULUO_EGG;
+        return ModItems.TIANSULUO_PINK_SCARF_EGG;
     }
 
     public void setDamage(float damage) {

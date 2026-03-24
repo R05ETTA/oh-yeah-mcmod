@@ -2,7 +2,6 @@ package com.oh_yeah.entity;
 
 import com.oh_yeah.config.OhYeahConfigManager;
 import com.oh_yeah.config.SpeciesConfig;
-import com.oh_yeah.config.VariantConfig;
 import com.oh_yeah.sound.TiansuluoVoiceType;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
@@ -13,23 +12,28 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.random.Random;
 
 import java.util.ArrayList;
-import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
-public final class TiansuluoBedWakeSpawner {
-    private TiansuluoBedWakeSpawner() {
+public final class TiansuluoPinkScarfBedWakeSpawner implements SleepWakeSpeciesHandler {
+    public static final TiansuluoPinkScarfBedWakeSpawner INSTANCE = new TiansuluoPinkScarfBedWakeSpawner();
+
+    private TiansuluoPinkScarfBedWakeSpawner() {
     }
 
-    public static boolean shouldQueueSpawn(ServerPlayerEntity player) {
+    @Override
+    public String speciesId() {
+        return "tiansuluo_pink_scarf";
+    }
+
+    @Override
+    public boolean shouldQueueSpawn(ServerPlayerEntity player) {
         if (player == null || !(player.getWorld() instanceof ServerWorld world)) {
             return false;
         }
-        SpeciesConfig config = OhYeahConfigManager.getTiansuluoConfig();
+        SpeciesConfig config = OhYeahConfigManager.getTiansuluoPinkScarfConfig();
         if (!config.enableBedWakeSpawn()) {
             return false;
         }
@@ -43,23 +47,32 @@ public final class TiansuluoBedWakeSpawner {
         return isBed(world, sleepingPos.get());
     }
 
-    public static void trySpawnPair(ServerPlayerEntity player, BlockPos bedPos) {
+    @Override
+    public boolean canSpawnAt(ServerPlayerEntity player, BlockPos bedPos) {
+        if (!(player.getWorld() instanceof ServerWorld world)) {
+            return false;
+        }
+        SpeciesConfig config = OhYeahConfigManager.getTiansuluoPinkScarfConfig();
+        return config.enableBedWakeSpawn() && isBed(world, bedPos);
+    }
+
+    @Override
+    public void trySpawn(ServerPlayerEntity player, BlockPos bedPos) {
         if (!(player.getWorld() instanceof ServerWorld world)) {
             return;
         }
-        SpeciesConfig config = OhYeahConfigManager.getTiansuluoConfig();
+        SpeciesConfig config = OhYeahConfigManager.getTiansuluoPinkScarfConfig();
         if (!config.enableBedWakeSpawn() || !isBed(world, bedPos)) {
             return;
         }
 
-        TiansuluoVariant variant = selectBedWakeVariant(world, bedPos, config);
         List<BlockPos> spawnPositions = findSpawnPositions(world, bedPos, config.bedWakeSpawnRadius(), 2);
         if (spawnPositions.size() < 2) {
             return;
         }
 
-        TiansuluoEntity adult = createEntity(world, spawnPositions.get(0), variant, false);
-        TiansuluoEntity baby = createEntity(world, spawnPositions.get(1), variant, true);
+        TiansuluoPinkScarfEntity adult = createEntity(world, spawnPositions.get(0), false);
+        TiansuluoPinkScarfEntity baby = createEntity(world, spawnPositions.get(1), true);
         if (adult == null || baby == null) {
             return;
         }
@@ -72,8 +85,8 @@ public final class TiansuluoBedWakeSpawner {
         }
     }
 
-    private static @org.jetbrains.annotations.Nullable TiansuluoEntity createEntity(ServerWorld world, BlockPos pos, TiansuluoVariant variant, boolean baby) {
-        TiansuluoEntity entity = ModEntityTypes.TIANSULUO.create(world);
+    private static @org.jetbrains.annotations.Nullable TiansuluoPinkScarfEntity createEntity(ServerWorld world, BlockPos pos, boolean baby) {
+        TiansuluoPinkScarfEntity entity = ModEntityTypes.TIANSULUO_PINK_SCARF.create(world);
         if (entity == null) {
             return null;
         }
@@ -81,43 +94,14 @@ public final class TiansuluoBedWakeSpawner {
         Vec3d spawnPos = Vec3d.ofBottomCenter(pos);
         entity.refreshPositionAndAngles(spawnPos.x, spawnPos.y, spawnPos.z, world.getRandom().nextFloat() * 360.0F, 0.0F);
         entity.initialize(world, world.getLocalDifficulty(pos), SpawnReason.EVENT, null);
-        entity.setVariant(variant);
         entity.markOneShotVoiceAsPlayed(TiansuluoVoiceType.SPAWN);
         if (baby) {
             entity.setBaby(true);
-            entity.setBreedingAge(OhYeahConfigManager.getTiansuluoConfig().tuning().babyGrowthAgeTicks());
+            entity.setBreedingAge(OhYeahConfigManager.getTiansuluoPinkScarfConfig().tuning().babyGrowthAgeTicks());
         } else {
             entity.setBreedingAge(0);
         }
         return entity;
-    }
-
-    private static TiansuluoVariant selectBedWakeVariant(ServerWorld world, BlockPos bedPos, SpeciesConfig config) {
-        Random random = world.getRandom();
-        int totalWeight = 0;
-        Map<TiansuluoVariant, Integer> candidates = new EnumMap<>(TiansuluoVariant.class);
-
-        for (TiansuluoVariant variant : TiansuluoVariant.values()) {
-            VariantConfig variantConfig = config.getVariantConfig(variant);
-            if (variantConfig == null || !variantConfig.enabled() || variantConfig.weight() <= 0) {
-                continue;
-            }
-            candidates.put(variant, variantConfig.weight());
-            totalWeight += variantConfig.weight();
-        }
-
-        if (totalWeight <= 0) {
-            return TiansuluoEntity.selectSpawnVariant(world, bedPos, SpawnReason.EVENT, random, config);
-        }
-
-        int pick = random.nextInt(totalWeight);
-        for (Map.Entry<TiansuluoVariant, Integer> entry : candidates.entrySet()) {
-            pick -= entry.getValue();
-            if (pick < 0) {
-                return entry.getKey();
-            }
-        }
-        return config.defaultVariant();
     }
 
     private static List<BlockPos> findSpawnPositions(ServerWorld world, BlockPos bedPos, int radius, int needed) {
@@ -171,7 +155,7 @@ public final class TiansuluoBedWakeSpawner {
         }
 
         Vec3d spawnPos = Vec3d.ofBottomCenter(pos);
-        Box box = ModEntityTypes.TIANSULUO.getDimensions().getBoxAt(spawnPos);
+        Box box = ModEntityTypes.TIANSULUO_PINK_SCARF.getDimensions().getBoxAt(spawnPos);
         return world.isSpaceEmpty(box);
     }
 

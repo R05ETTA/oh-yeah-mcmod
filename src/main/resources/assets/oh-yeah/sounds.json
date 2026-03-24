@@ -38,7 +38,7 @@
     "subtitle": "subtitles.oh-yeah.tiansuluo.step_soft",
     "sounds": [
       {
-        "name": "minecraft:block/wool/step"
+        "name": "oh-yeah:entity/tiansuluo/ambient_01"
       }
     ]
   },
@@ -119,6 +119,14 @@
     "sounds": [
       {
         "name": "oh-yeah:entity/tiansuluo/spawn_01"
+      }
+    ]
+  },
+  "tiansuluo.shear_react": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.shear_react",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo/shear_react_01"
       }
     ]
   }

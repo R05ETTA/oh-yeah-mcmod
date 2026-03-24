@@ -13,15 +13,19 @@ import java.util.List;
 
 public final class TiansuluoSpawnEggItem extends SpawnEggItem {
     private static final Style TOOLTIP_STYLE = Style.EMPTY.withColor(0x7A5C2E);
+    private final String descKey;
+    private final String descKey2;
 
-    public TiansuluoSpawnEggItem(EntityType<? extends MobEntity> type, int primaryColor, int secondaryColor, Item.Settings settings) {
+    public TiansuluoSpawnEggItem(EntityType<? extends MobEntity> type, int primaryColor, int secondaryColor, Item.Settings settings, String descKey, String descKey2) {
         super(type, primaryColor, secondaryColor, settings);
+        this.descKey = descKey;
+        this.descKey2 = descKey2;
     }
 
     @Override
     public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
         super.appendTooltip(stack, context, tooltip, type);
-        tooltip.add(Text.translatable("item.oh-yeah.tiansuluo_egg.desc").setStyle(TOOLTIP_STYLE));
-        tooltip.add(Text.translatable("item.oh-yeah.tiansuluo_egg.desc_2").setStyle(TOOLTIP_STYLE));
+        tooltip.add(Text.translatable(this.descKey).setStyle(TOOLTIP_STYLE));
+        tooltip.add(Text.translatable(this.descKey2).setStyle(TOOLTIP_STYLE));
     }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "oh-yeah:item/tiansuluo_egg"
+    "layer0": "oh-yeah:item/tiansuluo_battle_face_egg"
   }
 }
