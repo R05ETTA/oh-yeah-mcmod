@@ -33,6 +33,17 @@ public final class ModItems {
                     "item.oh-yeah.tiansuluo_battle_face_egg.desc_2"
             )
     );
+    public static final Item SUXIA_EGG = register(
+            "suxia_egg",
+            new TiansuluoSpawnEggItem(
+                    ModEntityTypes.SUXIA,
+                    0x4E617B,
+                    0xB7C9D9,
+                    new Item.Settings(),
+                    "item.oh-yeah.suxia_egg.desc",
+                    "item.oh-yeah.suxia_egg.desc_2"
+            )
+    );
     public static final Item CHIPS = register("chips", new Item(new Item.Settings().food(FoodComponents.COOKIE)));
 
     private ModItems() {
@@ -41,6 +52,7 @@ public final class ModItems {
     public static void initialize() {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(entries -> entries.add(TIANSULUO_PINK_SCARF_EGG));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(entries -> entries.add(TIANSULUO_BATTLE_FACE_EGG));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(entries -> entries.add(SUXIA_EGG));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(entries -> entries.add(CHIPS));
     }
 

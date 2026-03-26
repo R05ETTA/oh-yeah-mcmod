@@ -129,5 +129,37 @@
         "name": "oh-yeah:entity/tiansuluo/shear_react_01"
       }
     ]
+  },
+  "suxia.ambient": {
+    "subtitle": "subtitles.oh-yeah.suxia.ambient",
+    "sounds": [
+      {
+        "name": "minecraft:entity/squid/ambient"
+      }
+    ]
+  },
+  "suxia.hurt": {
+    "subtitle": "subtitles.oh-yeah.suxia.hurt",
+    "sounds": [
+      {
+        "name": "minecraft:entity/squid/hurt"
+      }
+    ]
+  },
+  "suxia.death": {
+    "subtitle": "subtitles.oh-yeah.suxia.death",
+    "sounds": [
+      {
+        "name": "minecraft:entity/squid/death"
+      }
+    ]
+  },
+  "suxia.squirt": {
+    "subtitle": "subtitles.oh-yeah.suxia.squirt",
+    "sounds": [
+      {
+        "name": "minecraft:entity/squid/squirt"
+      }
+    ]
   }
 }

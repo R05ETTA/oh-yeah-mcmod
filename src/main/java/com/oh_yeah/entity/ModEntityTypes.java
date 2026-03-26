@@ -14,10 +14,13 @@ import net.minecraft.entity.SpawnLocationTypes;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.tag.BiomeTags;
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -29,6 +32,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class ModEntityTypes {
+    private static final int SUXIA_SPAWN_WEIGHT = 8;
+    private static final int SUXIA_SPAWN_MIN_GROUP = 1;
+    private static final int SUXIA_SPAWN_MAX_GROUP = 4;
+
     public static final Identifier TIANSULUO_PINK_SCARF_ID = Identifier.of(OhYeah.MOD_ID, "tiansuluo_pink_scarf");
     public static final EntityType<TiansuluoPinkScarfEntity> TIANSULUO_PINK_SCARF = Registry.register(
             Registries.ENTITY_TYPE,
@@ -57,6 +64,16 @@ public final class ModEntityTypes {
                     .maxTrackingRange(8)
                     .build(TIANSULUO_BATTLE_FACE_ID.toString())
     );
+    public static final Identifier SUXIA_ID = Identifier.of(OhYeah.MOD_ID, "suxia");
+    public static final EntityType<SuxiaEntity> SUXIA = Registry.register(
+            Registries.ENTITY_TYPE,
+            SUXIA_ID,
+            EntityType.Builder.create(SuxiaEntity::new, SpawnGroup.WATER_CREATURE)
+                    .dimensions(0.8F, 0.8F)
+                    .eyeHeight(0.4F)
+                    .maxTrackingRange(8)
+                    .build(SUXIA_ID.toString())
+    );
 
     private ModEntityTypes() {
     }
@@ -66,8 +83,10 @@ public final class ModEntityTypes {
         SpeciesConfig battleFaceConfig = OhYeahConfigManager.getTiansuluoBattleFaceConfig();
         SpawnRestriction.register(TIANSULUO_PINK_SCARF, SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ModEntityTypes::canSpawnTiansuluoPinkScarf);
         SpawnRestriction.register(TIANSULUO_BATTLE_FACE, SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ModEntityTypes::canSpawnTiansuluoBattleFace);
+        SpawnRestriction.register(SUXIA, SpawnLocationTypes.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, ModEntityTypes::canSpawnSuxia);
         FabricDefaultAttributeRegistry.register(TIANSULUO_PINK_SCARF, TiansuluoPinkScarfEntity.createAttributes());
         FabricDefaultAttributeRegistry.register(TIANSULUO_BATTLE_FACE, TiansuluoBattleFaceEntity.createAttributes());
+        FabricDefaultAttributeRegistry.register(SUXIA, SuxiaEntity.createSuxiaAttributes());
 
         if (config.enableNaturalSpawn()) {
             List<RegistryKey<Biome>> biomes = resolveBiomes(config);
@@ -96,6 +115,9 @@ public final class ModEntityTypes {
                 );
             }
         }
+
+        BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_OCEAN), SpawnGroup.WATER_CREATURE, SUXIA, SUXIA_SPAWN_WEIGHT, SUXIA_SPAWN_MIN_GROUP, SUXIA_SPAWN_MAX_GROUP);
+        BiomeModifications.addSpawn(BiomeSelectors.tag(BiomeTags.IS_RIVER), SpawnGroup.WATER_CREATURE, SUXIA, SUXIA_SPAWN_WEIGHT, SUXIA_SPAWN_MIN_GROUP, SUXIA_SPAWN_MAX_GROUP);
     }
 
     private static boolean canSpawnTiansuluoPinkScarf(EntityType<TiansuluoPinkScarfEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
@@ -124,6 +146,15 @@ public final class ModEntityTypes {
         return pos.getY() >= variantCfg.minY()
                 && pos.getY() <= variantCfg.maxY()
                 && (spawnReason != SpawnReason.NATURAL || world.getBaseLightLevel(pos, 0) >= variantCfg.minLight());
+    }
+
+    private static boolean canSpawnSuxia(EntityType<SuxiaEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
+        int seaLevel = world.getSeaLevel();
+        int minY = seaLevel - 13;
+        return pos.getY() >= minY
+                && pos.getY() <= seaLevel
+                && world.getFluidState(pos).isIn(FluidTags.WATER)
+                && world.getBlockState(pos).isOf(Blocks.WATER);
     }
 
     private static List<RegistryKey<Biome>> resolveBiomes(SpeciesConfig config) {
