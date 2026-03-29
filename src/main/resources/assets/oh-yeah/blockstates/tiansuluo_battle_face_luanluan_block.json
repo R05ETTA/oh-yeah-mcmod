@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "blocks=1,hatch=0": {
+      "model": "oh-yeah:block/tiansuluo_battle_face_luanluan_block"
+    },
+    "blocks=1,hatch=1": {
+      "model": "oh-yeah:block/tiansuluo_battle_face_luanluan_block_stage1"
+    },
+    "blocks=1,hatch=2": {
+      "model": "oh-yeah:block/tiansuluo_battle_face_luanluan_block_stage2"
+    },
+    "blocks=2,hatch=0": {
+      "model": "oh-yeah:block/tiansuluo_battle_face_luanluan_block"
+    },
+    "blocks=2,hatch=1": {
+      "model": "oh-yeah:block/tiansuluo_battle_face_luanluan_block_stage1"
+    },
+    "blocks=2,hatch=2": {
+      "model": "oh-yeah:block/tiansuluo_battle_face_luanluan_block_stage2"
+    },
+    "blocks=3,hatch=0": {
+      "model": "oh-yeah:block/tiansuluo_battle_face_luanluan_block"
+    },
+    "blocks=3,hatch=1": {
+      "model": "oh-yeah:block/tiansuluo_battle_face_luanluan_block_stage1"
+    },
+    "blocks=3,hatch=2": {
+      "model": "oh-yeah:block/tiansuluo_battle_face_luanluan_block_stage2"
+    },
+    "blocks=4,hatch=0": {
+      "model": "oh-yeah:block/tiansuluo_battle_face_luanluan_block"
+    },
+    "blocks=4,hatch=1": {
+      "model": "oh-yeah:block/tiansuluo_battle_face_luanluan_block_stage1"
+    },
+    "blocks=4,hatch=2": {
+      "model": "oh-yeah:block/tiansuluo_battle_face_luanluan_block_stage2"
+    }
+  }
+}

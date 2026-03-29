@@ -82,6 +82,14 @@
       }
     ]
   },
+  "tiansuluo.carry_egg": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.carry_egg",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo/carry_egg_01"
+      }
+    ]
+  },
   "tiansuluo.attack_shot": {
     "subtitle": "subtitles.oh-yeah.tiansuluo.attack_shot",
     "sounds": [
@@ -114,14 +122,6 @@
       }
     ]
   },
-  "tiansuluo.spawn": {
-    "subtitle": "subtitles.oh-yeah.tiansuluo.spawn",
-    "sounds": [
-      {
-        "name": "oh-yeah:entity/tiansuluo/spawn_01"
-      }
-    ]
-  },
   "tiansuluo.shear_react": {
     "subtitle": "subtitles.oh-yeah.tiansuluo.shear_react",
     "sounds": [
@@ -134,7 +134,8 @@
     "subtitle": "subtitles.oh-yeah.suxia.ambient",
     "sounds": [
       {
-        "name": "minecraft:entity/squid/ambient"
+        "name": "minecraft:entity.squid.ambient",
+        "type": "event"
       }
     ]
   },
@@ -142,7 +143,8 @@
     "subtitle": "subtitles.oh-yeah.suxia.hurt",
     "sounds": [
       {
-        "name": "minecraft:entity/squid/hurt"
+        "name": "minecraft:entity.squid.hurt",
+        "type": "event"
       }
     ]
   },
@@ -150,7 +152,8 @@
     "subtitle": "subtitles.oh-yeah.suxia.death",
     "sounds": [
       {
-        "name": "minecraft:entity/squid/death"
+        "name": "minecraft:entity.squid.death",
+        "type": "event"
       }
     ]
   },
@@ -158,7 +161,8 @@
     "subtitle": "subtitles.oh-yeah.suxia.squirt",
     "sounds": [
       {
-        "name": "minecraft:entity/squid/squirt"
+        "name": "minecraft:entity.squid.squirt",
+        "type": "event"
       }
     ]
   }

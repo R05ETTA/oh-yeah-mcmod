@@ -7,6 +7,7 @@ public enum TiansuluoVoiceType {
     EAT("eat", 20, 24, false),
     EAT_FAVORITE("eat_favorite", 30, 28, false),
     BREED_SUCCESS("breed_success", 40, 36, false),
+    CARRY_EGG("carry_egg", 70, 60, false),
     ATTACK_SHOT("attack_shot", 50, 8, false),
     ATTACK_END("attack_end", 60, 16, false),
     HURT("hurt", 80, 22, false),
@@ -14,7 +15,6 @@ public enum TiansuluoVoiceType {
     DEATH("death", 90, 36, false),
     NOTICE_PLAYER("notice_player", 100, 30, true),
     GROW_UP("grow_up", 100, 36, true),
-    SPAWN("spawn", 100, 30, true),
     // Shear-triggered protest line that should interrupt every regular Tiansuluo voice.
     SHEAR_REACT("shear_react", 101, 30, false);
 

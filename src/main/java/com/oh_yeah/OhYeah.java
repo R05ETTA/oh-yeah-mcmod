@@ -1,6 +1,7 @@
 package com.oh_yeah;
 
 import com.oh_yeah.config.OhYeahConfigManager;
+import com.oh_yeah.block.ModBlocks;
 import com.oh_yeah.entity.ModEntityTypes;
 import com.oh_yeah.item.ModItems;
 import com.oh_yeah.sound.ModSoundEvents;
@@ -16,6 +17,7 @@ public final class OhYeah implements ModInitializer {
 	public void onInitialize() {
 		OhYeahConfigManager.initialize();
 		ModSoundEvents.initialize();
+		ModBlocks.initialize();
 		ModItems.initialize();
 		ModEntityTypes.initialize();
 		LOGGER.info("Initialized {}", MOD_ID);

@@ -17,11 +17,11 @@ public final class ModSoundEvents {
     public static final SoundEvent TIANSULUO_TEMPTED = register("tiansuluo.tempted");
     public static final SoundEvent TIANSULUO_NOTICE_PLAYER = register("tiansuluo.notice_player");
     public static final SoundEvent TIANSULUO_BREED_SUCCESS = register("tiansuluo.breed_success");
+    public static final SoundEvent TIANSULUO_CARRY_EGG = register("tiansuluo.carry_egg");
     public static final SoundEvent TIANSULUO_ATTACK_SHOT = register("tiansuluo.attack_shot");
     public static final SoundEvent TIANSULUO_ATTACK_END = register("tiansuluo.attack_end");
     public static final SoundEvent TIANSULUO_ATTACK_DECLARE = register("tiansuluo.attack_declare");
     public static final SoundEvent TIANSULUO_GROW_UP = register("tiansuluo.grow_up");
-    public static final SoundEvent TIANSULUO_SPAWN = register("tiansuluo.spawn");
     public static final SoundEvent TIANSULUO_SHEAR_REACT = register("tiansuluo.shear_react");
     public static final SoundEvent SUXIA_AMBIENT = register("suxia.ambient");
     public static final SoundEvent SUXIA_HURT = register("suxia.hurt");

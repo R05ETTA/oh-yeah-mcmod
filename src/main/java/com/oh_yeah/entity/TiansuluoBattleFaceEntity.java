@@ -6,17 +6,14 @@ import com.oh_yeah.config.TiansuluoFeatureSetConfig;
 import com.oh_yeah.config.TiansuluoTuningConfig;
 import com.oh_yeah.entity.ai.TiansuluoBattleFacePounceGoal;
 import com.oh_yeah.entity.species.ModSpeciesProfiles;
-import com.oh_yeah.item.ModItems;
 import com.oh_yeah.sound.TiansuluoVoiceType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.goal.AnimalMateGoal;
 import net.minecraft.entity.ai.goal.FollowParentGoal;
 import net.minecraft.entity.ai.goal.LookAroundGoal;
 import net.minecraft.entity.ai.goal.LookAtEntityGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -25,7 +22,6 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -78,12 +74,13 @@ public final class TiansuluoBattleFaceEntity extends AbstractTiansuluoEntity {
         TiansuluoTuningConfig tuning = this.tuning();
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(1, new TiansuluoBattleFacePounceGoal(this));
-        this.goalSelector.add(2, new AnimalMateGoal(this, tuning.mateGoalSpeed()));
-        this.goalSelector.add(3, new TemptGoal(this, tuning.temptGoalSpeed(), this::isBreedingItem, false));
-        this.goalSelector.add(4, new FollowParentGoal(this, tuning.followParentGoalSpeed()));
-        this.goalSelector.add(5, new WanderAroundFarGoal(this, tuning.wanderGoalSpeed()));
-        this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.add(7, new LookAroundGoal(this));
+        this.goalSelector.add(2, this.createMateForEggBlockGoal(tuning.mateGoalSpeed()));
+        this.goalSelector.add(3, this.createLayEggBlockGoal());
+        this.goalSelector.add(4, this.createTemptWhileAvailableGoal(tuning.temptGoalSpeed()));
+        this.goalSelector.add(5, new FollowParentGoal(this, tuning.followParentGoalSpeed()));
+        this.goalSelector.add(6, new WanderAroundFarGoal(this, tuning.wanderGoalSpeed()));
+        this.goalSelector.add(7, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.add(8, new LookAroundGoal(this));
     }
 
     @Override
@@ -99,11 +96,6 @@ public final class TiansuluoBattleFaceEntity extends AbstractTiansuluoEntity {
     @Override
     protected String speciesKey() {
         return "tiansuluo_battle_face";
-    }
-
-    @Override
-    protected Item eggDropItem() {
-        return ModItems.TIANSULUO_BATTLE_FACE_EGG;
     }
 
     @Override
@@ -236,12 +228,7 @@ public final class TiansuluoBattleFaceEntity extends AbstractTiansuluoEntity {
 
     @Override
     public @Nullable PassiveEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        TiansuluoBattleFaceEntity child = ModEntityTypes.TIANSULUO_BATTLE_FACE.create(serverWorld);
-        if (child != null) {
-            child.setBaby(true);
-            child.setBreedingAge(this.tuning().babyGrowthAgeTicks());
-        }
-        return child;
+        return null;
     }
 
     private void rememberRetaliationTarget(LivingEntity attacker) {

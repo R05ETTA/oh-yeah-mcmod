@@ -34,11 +34,11 @@ public final class ModSpeciesProfiles {
                 ModSoundEvents.TIANSULUO_TEMPTED,
                 ModSoundEvents.TIANSULUO_NOTICE_PLAYER,
                 ModSoundEvents.TIANSULUO_BREED_SUCCESS,
+                ModSoundEvents.TIANSULUO_CARRY_EGG,
                 ModSoundEvents.TIANSULUO_ATTACK_SHOT,
                 ModSoundEvents.TIANSULUO_ATTACK_END,
                 ModSoundEvents.TIANSULUO_ATTACK_DECLARE,
                 ModSoundEvents.TIANSULUO_GROW_UP,
-                ModSoundEvents.TIANSULUO_SPAWN,
                 ModSoundEvents.TIANSULUO_SHEAR_REACT
         );
         SpeciesSoundProfile battleFace = new SpeciesSoundProfile(
@@ -52,11 +52,11 @@ public final class ModSpeciesProfiles {
                 ModSoundEvents.TIANSULUO_TEMPTED,
                 ModSoundEvents.TIANSULUO_NOTICE_PLAYER,
                 ModSoundEvents.TIANSULUO_BREED_SUCCESS,
+                ModSoundEvents.TIANSULUO_CARRY_EGG,
                 ModSoundEvents.TIANSULUO_ATTACK_SHOT,
                 ModSoundEvents.TIANSULUO_ATTACK_END,
                 ModSoundEvents.TIANSULUO_ATTACK_DECLARE,
                 ModSoundEvents.TIANSULUO_GROW_UP,
-                ModSoundEvents.TIANSULUO_SPAWN,
                 ModSoundEvents.TIANSULUO_SHEAR_REACT
         );
         TIANSULUO_SOUNDS.put(TIANSULUO_PINK_SCARF_SOUND_PROFILE, pinkScarf);

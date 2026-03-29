@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "oh-yeah:block/tiansuluo_battle_face_luanluan_block_stage1"
+  }
+}

@@ -2,6 +2,7 @@ package com.oh_yeah.item;
 
 import com.oh_yeah.OhYeah;
 import com.oh_yeah.entity.ModEntityTypes;
+import net.minecraft.component.type.FoodComponent;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.component.type.FoodComponents;
 import net.minecraft.item.Item;
@@ -44,6 +45,10 @@ public final class ModItems {
                     "item.oh-yeah.suxia_egg.desc_2"
             )
     );
+    public static final Item XIAMI_HUHU = register(
+            "xiami_huhu",
+            new Item(new Item.Settings().food(new FoodComponent.Builder().nutrition(6).saturationModifier(0.6F).build()))
+    );
     public static final Item CHIPS = register("chips", new Item(new Item.Settings().food(FoodComponents.COOKIE)));
 
     private ModItems() {
@@ -53,6 +58,7 @@ public final class ModItems {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(entries -> entries.add(TIANSULUO_PINK_SCARF_EGG));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(entries -> entries.add(TIANSULUO_BATTLE_FACE_EGG));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(entries -> entries.add(SUXIA_EGG));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(entries -> entries.add(XIAMI_HUHU));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(entries -> entries.add(CHIPS));
     }
 

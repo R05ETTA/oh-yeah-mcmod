@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "oh-yeah:block/tiansuluo_pink_scarf_luanluan_block_stage0"
+  }
+}

@@ -2,7 +2,6 @@ package com.oh_yeah.entity;
 
 import com.oh_yeah.config.OhYeahConfigManager;
 import com.oh_yeah.config.SpeciesConfig;
-import com.oh_yeah.sound.TiansuluoVoiceType;
 import net.minecraft.block.BedBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.SpawnReason;
@@ -94,7 +93,6 @@ public final class TiansuluoPinkScarfBedWakeSpawner implements SleepWakeSpeciesH
         Vec3d spawnPos = Vec3d.ofBottomCenter(pos);
         entity.refreshPositionAndAngles(spawnPos.x, spawnPos.y, spawnPos.z, world.getRandom().nextFloat() * 360.0F, 0.0F);
         entity.initialize(world, world.getLocalDifficulty(pos), SpawnReason.EVENT, null);
-        entity.markOneShotVoiceAsPlayed(TiansuluoVoiceType.SPAWN);
         if (baby) {
             entity.setBaby(true);
             entity.setBreedingAge(OhYeahConfigManager.getTiansuluoPinkScarfConfig().tuning().babyGrowthAgeTicks());

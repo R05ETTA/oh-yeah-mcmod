@@ -226,6 +226,9 @@ public class SuxiaEntity extends WaterCreatureEntity {
             this.getWorld().sendEntityStatus(this, STATUS_SUXIA_DEATH_BURST);
         }
         super.onDeath(damageSource);
+        if (!this.getWorld().isClient) {
+            this.dropItem(ModItems.XIAMI_HUHU);
+        }
     }
 
     private Vec3d applyBodyRotations(Vec3d shootVector) {

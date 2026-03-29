@@ -13,11 +13,11 @@ public record SpeciesSoundProfile(
         SoundEvent tempted,
         SoundEvent noticePlayer,
         SoundEvent breedSuccess,
+        SoundEvent carryEgg,
         SoundEvent attackShot,
         SoundEvent attackEnd,
         SoundEvent attackDeclare,
         SoundEvent growUp,
-        SoundEvent spawn,
         SoundEvent shearReact
 ) {
 }
