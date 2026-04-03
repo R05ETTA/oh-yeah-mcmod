@@ -165,5 +165,314 @@
         "type": "event"
       }
     ]
+  },
+  "tiansuluo_ps.ambient": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.ambient",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/ambient_01"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/ambient_02"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/ambient_03"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/ambient_04"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/ambient_05"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/ambient_06"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/ambient_07"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/ambient_08"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/ambient_09"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/ambient_10"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/ambient_11"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/ambient_12"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/ambient_13"
+      }
+    ]
+  },
+  "tiansuluo_ps.breed_success": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.breed_success",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/breed_success_01"
+      }
+    ]
+  },
+  "tiansuluo_ps.death": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.death",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/death_01"
+      }
+    ]
+  },
+  "tiansuluo_ps.eat": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.eat",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/eat_01"
+      }
+    ]
+  },
+  "tiansuluo_ps.grow_up": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.grow_up",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/grow_up_01"
+      }
+    ]
+  },
+  "tiansuluo_ps.hurt": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.hurt",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/hurt_01"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/hurt_02"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/hurt_03"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/hurt_04"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/hurt_05"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/hurt_06"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/hurt_07"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/hurt_08"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/hurt_09"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/hurt_10"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/hurt_11"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/hurt_12"
+      }
+    ]
+  },
+  "tiansuluo_ps.notice_player": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.notice_player",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/notice_player_01"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/notice_player_02"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/notice_player_03"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/notice_player_04"
+      }
+    ]
+  },
+  "tiansuluo_ps.rare_call": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.rare_call",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_01"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_02"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_03"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_04"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_05"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_06"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_07"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_08"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_09"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_10"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_11"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_12"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_13"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_14"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_15"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_16"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_17"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_18"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_19"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_20"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_21"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_22"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_23"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_24"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_25"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_26"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_27"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_28"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/rare_call_29"
+      }
+    ]
+  },
+  "tiansuluo_ps.tempted": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.tempted",
+    "sounds": [
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/tempted_01"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/tempted_02"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/tempted_03"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/tempted_04"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/tempted_05"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/tempted_06"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/tempted_07"
+      },
+      {
+        "name": "oh-yeah:entity/tiansuluo_pink_scarf/tempted_08"
+      }
+    ]
+  },
+  "tiansuluo_ps.attack_shot": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.attack_shot",
+    "sounds": [
+      {
+        "name": "oh-yeah:tiansuluo.attack_shot",
+        "type": "event"
+      }
+    ]
+  },
+  "tiansuluo_ps.attack_end": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.attack_end",
+    "sounds": [
+      {
+        "name": "oh-yeah:tiansuluo.attack_end",
+        "type": "event"
+      }
+    ]
+  },
+  "tiansuluo_ps.attack_declare": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.attack_declare",
+    "sounds": [
+      {
+        "name": "oh-yeah:tiansuluo.attack_declare",
+        "type": "event"
+      }
+    ]
+  },
+  "tiansuluo_ps.carry_egg": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.carry_egg",
+    "sounds": [
+      {
+        "name": "oh-yeah:tiansuluo.carry_egg",
+        "type": "event"
+      }
+    ]
+  },
+  "tiansuluo_ps.shear_react": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.shear_react",
+    "sounds": [
+      {
+        "name": "oh-yeah:tiansuluo.shear_react",
+        "type": "event"
+      }
+    ]
+  },
+  "tiansuluo_ps.step_soft": {
+    "subtitle": "subtitles.oh-yeah.tiansuluo.step_soft",
+    "sounds": [
+      {
+        "name": "oh-yeah:tiansuluo.step_soft",
+        "type": "event"
+      }
+    ]
   }
 }

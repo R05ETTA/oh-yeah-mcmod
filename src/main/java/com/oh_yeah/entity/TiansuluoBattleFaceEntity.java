@@ -6,7 +6,7 @@ import com.oh_yeah.config.TiansuluoFeatureSetConfig;
 import com.oh_yeah.config.TiansuluoTuningConfig;
 import com.oh_yeah.entity.ai.TiansuluoBattleFacePounceGoal;
 import com.oh_yeah.entity.species.ModSpeciesProfiles;
-import com.oh_yeah.sound.TiansuluoVoiceType;
+import com.oh_yeah.sound.VoiceType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -268,16 +268,16 @@ public final class TiansuluoBattleFaceEntity extends AbstractTiansuluoEntity {
 
         if (this.retaliationState == RetaliationState.PENDING_DECLARE) {
             this.getNavigation().stop();
-            if (this.isVoiceActive(TiansuluoVoiceType.HURT)) {
+            if (this.isVoiceActive(VoiceType.HURT)) {
                 return;
             }
 
-            if (this.isVoiceActive(TiansuluoVoiceType.ATTACK_DECLARE)) {
+            if (this.isVoiceActive(VoiceType.ATTACK_DECLARE)) {
                 return;
             }
 
             if (this.retaliationDeclareTicksRemaining <= 0) {
-                this.tryPlayVoice(TiansuluoVoiceType.ATTACK_DECLARE, this.sounds().attackDeclare(), 1.0F, 1.0F);
+                this.tryPlayVoice(VoiceType.ATTACK_DECLARE, this.sounds().get(VoiceType.ATTACK_DECLARE), 1.0F, 1.0F);
                 this.retaliationDeclareTicksRemaining = 1;
             } else {
                 this.retaliationDeclareTicksRemaining = 0;
@@ -309,7 +309,7 @@ public final class TiansuluoBattleFaceEntity extends AbstractTiansuluoEntity {
             this.setTarget(null);
         }
         if (shouldPlayEndVoice) {
-            this.tryPlayVoice(TiansuluoVoiceType.ATTACK_END, this.sounds().attackEnd(), 1.0F, 1.0F);
+            this.tryPlayVoice(VoiceType.ATTACK_END, this.sounds().get(VoiceType.ATTACK_END), 1.0F, 1.0F);
         }
     }
 

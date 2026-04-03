@@ -8,8 +8,9 @@ import com.oh_yeah.config.TiansuluoTuningConfig;
 import com.oh_yeah.config.VariantConfig;
 import com.oh_yeah.entity.species.FoodPreferenceResult;
 import com.oh_yeah.entity.species.ModSpeciesProfiles;
-import com.oh_yeah.entity.species.SpeciesSoundProfile;
-import com.oh_yeah.sound.TiansuluoVoiceType;
+import com.oh_yeah.sound.SoundProfile;
+import com.oh_yeah.sound.VoiceScheduler;
+import com.oh_yeah.sound.VoiceType;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -51,16 +52,10 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.EnumMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 
 public abstract class AbstractTiansuluoEntity extends AnimalEntity implements EggLayingSpecies {
     private static final TrackedData<Boolean> HAS_CARRIED_EGG_BLOCK = DataTracker.registerData(AbstractTiansuluoEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-    private static final String TAG_PLAYED_VOICES = "PlayedVoices";
-    private static final String TAG_VOICE_COOLDOWNS = "VoiceCooldowns";
     private static final String TAG_SILENCED_BY_SHEARS = "SilencedByShears";
     private static final String TAG_HAS_CARRIED_EGG_BLOCK = "HasLuanluanBlock";
     private static final String TAG_EGG_BLOCK_TARGET_X = "LuanluanBlockTargetX";
@@ -69,10 +64,7 @@ public abstract class AbstractTiansuluoEntity extends AnimalEntity implements Eg
     private static final String TAG_EGG_BLOCK_PLACING_COUNTER = "LuanluanBlockPlacingCounter";
     private static final String TAG_EGG_BLOCK_PLAYER_UUID = "LuanluanBlockPlayerUuid";
 
-    private final Set<TiansuluoVoiceType> playedOneShotVoices = new HashSet<>();
-    private final Map<TiansuluoVoiceType, Long> lastVoiceTicks = new EnumMap<>(TiansuluoVoiceType.class);
-    private @Nullable TiansuluoVoiceType currentVoiceType;
-    private long currentVoiceEndTick;
+    private final VoiceScheduler voiceScheduler = new VoiceScheduler();
     private boolean ambientRareCallNext;
     private boolean wasBabyLastTick;
     private boolean wasTemptedByPlayer;
@@ -115,7 +107,7 @@ public abstract class AbstractTiansuluoEntity extends AnimalEntity implements Eg
         }
         this.updateEggBlockAttractedPlayer();
         this.tickSpeciesMovement();
-        this.clearFinishedVoice();
+        this.voiceScheduler.clearFinishedVoice(this.getWorld().getTime());
         this.updateGrowthVoice();
         this.updateStateVoices();
         this.updateCarryEggVoice();
@@ -136,9 +128,9 @@ public abstract class AbstractTiansuluoEntity extends AnimalEntity implements Eg
         if (!this.getWorld().isClient && result.isAccepted() && preference.isFood()) {
             this.applyGrowthFromFood(preference);
             if (this.silencedByShears) this.setSilencedByShears(false);
-            TiansuluoVoiceType voiceType = preference == FoodPreferenceResult.FAVORITE ? TiansuluoVoiceType.EAT_FAVORITE : TiansuluoVoiceType.EAT;
-            SoundEvent eatSound = preference == FoodPreferenceResult.FAVORITE ? this.sounds().eatFavorite() : this.sounds().eat();
-            this.tryPlayVoice(voiceType, eatSound, 1.0F, preference == FoodPreferenceResult.FAVORITE ? 1.08F : 1.0F);
+            VoiceType voiceType = preference == FoodPreferenceResult.FAVORITE ? VoiceType.EAT_FAVORITE : VoiceType.EAT;
+            SoundEvent eatSound = preference == FoodPreferenceResult.FAVORITE ? this.sounds().get(VoiceType.EAT_FAVORITE) : this.sounds().get(VoiceType.EAT);
+            this.tryPlayVoice(voiceType, eatSound, 1.0F, 1.0F);
         }
         return result;
     }
@@ -156,25 +148,20 @@ public abstract class AbstractTiansuluoEntity extends AnimalEntity implements Eg
     }
 
     @Override protected @Nullable SoundEvent getAmbientSound() {
-        TiansuluoVoiceType type = this.ambientRareCallNext ? TiansuluoVoiceType.RARE_CALL : TiansuluoVoiceType.AMBIENT;
-        SoundEvent event = this.ambientRareCallNext ? this.sounds().rareCall() : this.sounds().ambient();
+        VoiceType type = this.ambientRareCallNext ? VoiceType.RARE_CALL : VoiceType.AMBIENT;
+        SoundEvent event = this.ambientRareCallNext ? this.sounds().get(VoiceType.RARE_CALL) : this.sounds().get(VoiceType.AMBIENT);
         this.ambientRareCallNext = this.random.nextInt(this.tuning().rareCallChanceDivisor()) == 0;
         return this.beginVoice(type) ? event : null;
     }
-    @Override protected @Nullable SoundEvent getHurtSound(DamageSource source) { return this.beginVoice(TiansuluoVoiceType.HURT) ? this.sounds().hurt() : null; }
-    @Override protected @Nullable SoundEvent getDeathSound() { return this.beginVoice(TiansuluoVoiceType.DEATH) ? this.sounds().death() : null; }
+    @Override protected @Nullable SoundEvent getHurtSound(DamageSource source) { return this.beginVoice(VoiceType.HURT) ? this.sounds().get(VoiceType.HURT) : null; }
+    @Override protected @Nullable SoundEvent getDeathSound() { return this.beginVoice(VoiceType.DEATH) ? this.sounds().get(VoiceType.DEATH) : null; }
     @Override public float getSoundVolume() { return this.resolveSoundVolume(super.getSoundVolume()); }
     @Override protected void playStepSound(BlockPos pos, BlockState state) {}
 
     @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
-        NbtCompound played = new NbtCompound();
-        for (TiansuluoVoiceType type : this.playedOneShotVoices) played.putBoolean(type.configKey(), true);
-        nbt.put(TAG_PLAYED_VOICES, played);
-        NbtCompound cooldowns = new NbtCompound();
-        for (Map.Entry<TiansuluoVoiceType, Long> entry : this.lastVoiceTicks.entrySet()) cooldowns.putLong(entry.getKey().configKey(), entry.getValue());
-        nbt.put(TAG_VOICE_COOLDOWNS, cooldowns);
+        this.voiceScheduler.writeToNbt(nbt);
         nbt.putBoolean(TAG_SILENCED_BY_SHEARS, this.silencedByShears);
         nbt.putBoolean(TAG_HAS_CARRIED_EGG_BLOCK, this.hasCarriedEggBlock());
         if (this.eggBlockTargetPos != null) {
@@ -189,12 +176,7 @@ public abstract class AbstractTiansuluoEntity extends AnimalEntity implements Eg
     @Override
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
-        this.playedOneShotVoices.clear();
-        NbtCompound played = nbt.getCompound(TAG_PLAYED_VOICES);
-        for (TiansuluoVoiceType type : TiansuluoVoiceType.values()) if (played.getBoolean(type.configKey())) this.playedOneShotVoices.add(type);
-        this.lastVoiceTicks.clear();
-        NbtCompound cooldowns = nbt.getCompound(TAG_VOICE_COOLDOWNS);
-        for (TiansuluoVoiceType type : TiansuluoVoiceType.values()) if (cooldowns.contains(type.configKey())) this.lastVoiceTicks.put(type, cooldowns.getLong(type.configKey()));
+        this.voiceScheduler.readFromNbt(nbt);
         this.silencedByShears = nbt.getBoolean(TAG_SILENCED_BY_SHEARS);
         this.setHasCarriedEggBlock(nbt.getBoolean(TAG_HAS_CARRIED_EGG_BLOCK));
         if (nbt.contains(TAG_EGG_BLOCK_TARGET_X) && nbt.contains(TAG_EGG_BLOCK_TARGET_Y) && nbt.contains(TAG_EGG_BLOCK_TARGET_Z)) {
@@ -204,7 +186,7 @@ public abstract class AbstractTiansuluoEntity extends AnimalEntity implements Eg
         this.eggBlockPlayerUuid = nbt.containsUuid(TAG_EGG_BLOCK_PLAYER_UUID) ? nbt.getUuid(TAG_EGG_BLOCK_PLAYER_UUID) : null;
     }
 
-    public void markOneShotVoiceAsPlayed(TiansuluoVoiceType type) { if (type.isOneShot()) this.playedOneShotVoices.add(type); }
+    public void markOneShotVoiceAsPlayed(VoiceType type) { this.voiceScheduler.markOneShotAsPlayed(type); }
     public Identifier getTextureId() {
         VariantConfig cfg = this.speciesConfig().defaultVariantConfig();
         String texture = cfg != null ? cfg.texture() : "textures/entity/tiansuluo.png";
@@ -216,7 +198,7 @@ public abstract class AbstractTiansuluoEntity extends AnimalEntity implements Eg
     }
 
     protected TiansuluoTuningConfig tuning() { return this.speciesConfig().tuning(); }
-    protected SpeciesSoundProfile sounds() { return ModSpeciesProfiles.soundsFor(this.soundProfileKey()); }
+    protected SoundProfile sounds() { return ModSpeciesProfiles.soundsFor(this.soundProfileKey()); }
     protected TiansuluoFeatureSetConfig.BreedingFeatureConfig breedingConfig() {
         TiansuluoFeatureSetConfig.BreedingFeatureConfig breeding = this.speciesConfig().archetype().features().breeding();
         return breeding != null ? breeding : TiansuluoFeatureSetConfig.BreedingFeatureConfig.createDefaults();
@@ -225,12 +207,12 @@ public abstract class AbstractTiansuluoEntity extends AnimalEntity implements Eg
     protected AnimalMateGoal createMateForEggBlockGoal(double speed) { return new MateForEggBlockGoal(this, speed); }
     protected Goal createLayEggBlockGoal() { return new LayEggBlockGoal(); }
     protected TemptGoal createTemptWhileAvailableGoal(double speed) { return new TemptWhileAvailableGoal(speed); }
-    protected boolean tryPlayVoice(TiansuluoVoiceType type, SoundEvent sound, float volume, float pitch) { if (!this.beginVoice(type)) return false; this.playSpeciesSound(sound, volume, pitch); return true; }
-    public boolean isSilencedByShears() { return this.silencedByShears; }
+    protected boolean tryPlayVoice(VoiceType type, SoundEvent sound, float volume, float pitch) { if (!this.beginVoice(type)) return false; this.playSpeciesSound(sound, volume, pitch); return true; }
+    protected boolean isVoiceActive(VoiceType type) { return this.voiceScheduler.isVoiceActive(type, this.getWorld().getTime()); }
     public void setSilencedByShears(boolean silencedByShears) { this.silencedByShears = silencedByShears; }
     protected float resolveSoundVolume(float requestedVolume) { return this.silencedByShears ? 0.0F : requestedVolume; }
     protected void playSpeciesSound(SoundEvent sound, float volume, float pitch) { this.playSound(sound, this.resolveSoundVolume(volume), pitch); }
-    protected boolean isVoiceActive(TiansuluoVoiceType type) { this.clearFinishedVoice(); return this.currentVoiceType == type; }
+    public boolean isSilencedByShears() { return this.silencedByShears; }
     protected boolean shouldDisplayCarriedEggBlockParticles() { return this.usesEggBlockBreeding() && this.hasCarriedEggBlock() && !this.isBaby() && this.breedingConfig().showCarriedParticles(); }
 
     protected void spawnCarriedEggBlockParticles() {
@@ -323,22 +305,22 @@ public abstract class AbstractTiansuluoEntity extends AnimalEntity implements Eg
 
     private void updateGrowthVoice() {
         boolean babyNow = this.isBaby();
-        if (this.wasBabyLastTick && !babyNow) this.tryPlayVoice(TiansuluoVoiceType.GROW_UP, this.sounds().growUp(), 1.0F, 1.05F);
+        if (this.wasBabyLastTick && !babyNow) this.tryPlayVoice(VoiceType.GROW_UP, this.sounds().get(VoiceType.GROW_UP), 1.0F, 1.0F);
         this.wasBabyLastTick = babyNow;
     }
 
     private void updateStateVoices() {
         boolean tempted = this.isTemptedByNearbyPlayer();
-        if (tempted && !this.wasTemptedByPlayer) this.tryPlayVoice(TiansuluoVoiceType.TEMPTED, this.sounds().tempted(), 1.0F, 1.0F);
+        if (tempted && !this.wasTemptedByPlayer) this.tryPlayVoice(VoiceType.TEMPTED, this.sounds().get(VoiceType.TEMPTED), 1.0F, 1.0F);
         this.wasTemptedByPlayer = tempted;
         boolean noticing = this.isNoticingNearbyPlayer();
-        if (noticing && !this.wasNoticingPlayer) this.tryPlayVoice(TiansuluoVoiceType.NOTICE_PLAYER, this.sounds().noticePlayer(), 1.0F, 1.0F);
+        if (noticing && !this.wasNoticingPlayer) this.tryPlayVoice(VoiceType.NOTICE_PLAYER, this.sounds().get(VoiceType.NOTICE_PLAYER), 1.0F, 1.0F);
         this.wasNoticingPlayer = noticing;
     }
 
     private void updateCarryEggVoice() {
         if (!this.usesEggBlockBreeding() || !this.hasCarriedEggBlock() || this.isBaby()) return;
-        this.tryPlayVoice(TiansuluoVoiceType.CARRY_EGG, this.sounds().carryEgg(), 1.0F, 1.0F);
+        this.tryPlayVoice(VoiceType.CARRY_EGG, this.sounds().get(VoiceType.CARRY_EGG), 1.0F, 1.0F);
     }
 
     private FoodPreferenceResult getFoodPreference(ItemStack stack) { return ModSpeciesProfiles.TIANSULUO_FOOD.getPreference(stack); }
@@ -358,31 +340,20 @@ public abstract class AbstractTiansuluoEntity extends AnimalEntity implements Eg
         return player != null;
     }
 
-    private boolean beginVoice(TiansuluoVoiceType requested) {
-        this.clearFinishedVoice();
+    private boolean beginVoice(VoiceType requested) {
         long now = this.getWorld().getTime();
-        if (requested.isOneShot() && this.playedOneShotVoices.contains(requested)) return false;
         int intervalTicks = requested.isOneShot() ? 0 : this.speciesConfig().intervalTicks(requested.configKey());
-        long lastTick = this.lastVoiceTicks.getOrDefault(requested, Long.MIN_VALUE / 4);
-        if (!requested.isOneShot() && now - lastTick < intervalTicks) return false;
-        if (this.currentVoiceType != null && this.currentVoiceEndTick > now) {
-            if (this.currentVoiceType.priority() >= requested.priority()) return false;
-            this.clearCurrentVoiceState();
+        int configDuration = this.speciesConfig().durationTicks(requested.configKey());
+        int durationTicks;
+        if (configDuration > 0) {
+            durationTicks = configDuration;
+        } else if (requested == VoiceType.ATTACK_DECLARE) {
+            durationTicks = this.tuning().attackDeclareDurationTicks();
+        } else {
+            durationTicks = requested.durationTicks();
         }
-        return this.activateVoice(requested, now);
+        return this.voiceScheduler.beginVoice(requested, now, intervalTicks, durationTicks);
     }
-
-    private boolean activateVoice(TiansuluoVoiceType requested, long now) {
-        this.currentVoiceType = requested;
-        this.currentVoiceEndTick = now + this.voiceDurationTicks(requested);
-        this.lastVoiceTicks.put(requested, now);
-        if (requested.isOneShot()) this.playedOneShotVoices.add(requested);
-        return true;
-    }
-
-    private int voiceDurationTicks(TiansuluoVoiceType type) { return type == TiansuluoVoiceType.ATTACK_DECLARE ? this.tuning().attackDeclareDurationTicks() : type.durationTicks(); }
-    private void clearFinishedVoice() { long now = this.getWorld().getTime(); if (this.currentVoiceType != null && this.currentVoiceEndTick <= now) this.clearCurrentVoiceState(); }
-    private void clearCurrentVoiceState() { this.currentVoiceType = null; this.currentVoiceEndTick = 0L; }
     private boolean isShearMuteInteractionEnabledForSpecies() {
         var config = com.oh_yeah.config.OhYeahConfigManager.getShearMuteGameplayConfig();
         return config.enabled() && config.speciesIds() != null && config.speciesIds().contains(this.speciesKey());
@@ -391,7 +362,7 @@ public abstract class AbstractTiansuluoEntity extends AnimalEntity implements Eg
         if (this.silencedByShears) return false;
         this.dropItem(Items.RED_WOOL);
         this.getWorld().playSoundFromEntity(null, this, SoundEvents.ENTITY_SHEEP_SHEAR, SoundCategory.PLAYERS, 1.0F, 1.0F);
-        this.tryPlayVoice(TiansuluoVoiceType.SHEAR_REACT, this.sounds().shearReact(), 1.0F, 1.0F);
+        this.tryPlayVoice(VoiceType.SHEAR_REACT, this.sounds().get(VoiceType.SHEAR_REACT), 1.0F, 1.0F);
         this.setSilencedByShears(true);
         stack.damage(1, player, getSlotForHand(hand));
         return true;
@@ -413,7 +384,7 @@ public abstract class AbstractTiansuluoEntity extends AnimalEntity implements Eg
             this.tiansuluo.setEggBlockPlacingCounter(0);
             this.tiansuluo.setEggBlockAttractedPlayer(player);
             if (player != null) player.sendMessage(Text.translatable(this.tiansuluo.breedingConfig().carriedMessageKey()), true);
-            this.tiansuluo.tryPlayVoice(TiansuluoVoiceType.BREED_SUCCESS, this.tiansuluo.sounds().breedSuccess(), 1.0F, 1.0F);
+            this.tiansuluo.tryPlayVoice(VoiceType.BREED_SUCCESS, this.tiansuluo.sounds().get(VoiceType.BREED_SUCCESS), 1.0F, 1.0F);
             this.animal.setBreedingAge(6000);
             this.mate.setBreedingAge(6000);
             this.animal.resetLoveTicks();

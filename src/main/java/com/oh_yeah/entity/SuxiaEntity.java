@@ -98,21 +98,21 @@ public class SuxiaEntity extends WaterCreatureEntity {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return ModSoundEvents.SUXIA_AMBIENT;
+        return ModSoundEvents.Suxia.AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return ModSoundEvents.SUXIA_HURT;
+        return ModSoundEvents.Suxia.HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return ModSoundEvents.SUXIA_DEATH;
+        return ModSoundEvents.Suxia.DEATH;
     }
 
     protected SoundEvent getSquirtSound() {
-        return ModSoundEvents.SUXIA_SQUIRT;
+        return ModSoundEvents.Suxia.SQUIRT;
     }
 
     @Override

@@ -5,7 +5,7 @@ import com.oh_yeah.config.SpeciesConfig;
 import com.oh_yeah.config.TiansuluoTuningConfig;
 import com.oh_yeah.entity.projectile.TiansuluoPinkScarfProjectileEntity;
 import com.oh_yeah.entity.species.ModSpeciesProfiles;
-import com.oh_yeah.sound.TiansuluoVoiceType;
+import com.oh_yeah.sound.VoiceType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.RangedAttackMob;
@@ -92,7 +92,7 @@ public class TiansuluoPinkScarfEntity extends AbstractTiansuluoEntity implements
         double deltaZ = target.getZ() - muzzlePos.z;
         double arcBoost = Math.sqrt(deltaX * deltaX + deltaZ * deltaZ) * 0.2F;
         projectile.setVelocity(deltaX, deltaY + arcBoost, deltaZ, this.tuning().retaliationProjectileSpeed(), this.tuning().retaliationProjectileDivergence());
-        this.tryPlayVoice(TiansuluoVoiceType.ATTACK_SHOT, this.sounds().attackShot(), 1.0F, 1.0F);
+        this.tryPlayVoice(VoiceType.ATTACK_SHOT, this.sounds().get(VoiceType.ATTACK_SHOT), 1.0F, 1.0F);
         this.playSpeciesSound(SoundEvents.ENTITY_SNOW_GOLEM_SHOOT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
         this.getWorld().spawnEntity(projectile);
         this.retaliationBurstShotsFired++;
@@ -107,6 +107,7 @@ public class TiansuluoPinkScarfEntity extends AbstractTiansuluoEntity implements
     @Override protected SpeciesConfig speciesConfig() { return OhYeahConfigManager.getTiansuluoPinkScarfConfig(); }
     @Override protected String soundProfileKey() { return ModSpeciesProfiles.TIANSULUO_PINK_SCARF_SOUND_PROFILE; }
     @Override protected String speciesKey() { return "tiansuluo_pink_scarf"; }
+    @Override public float getSoundPitch() { return 1.0F; }
 
     private Vec3d getProjectileMuzzlePos() {
         Vec3d forward = Vec3d.fromPolar(0.0F, this.getHeadYaw()).normalize();
@@ -145,9 +146,9 @@ public class TiansuluoPinkScarfEntity extends AbstractTiansuluoEntity implements
                 if (this.retaliationDeclareTicksRemaining <= 0) this.retaliationState = RetaliationState.RETALIATING;
                 return;
             }
-            if (this.isVoiceActive(TiansuluoVoiceType.HURT)) return;
+            if (this.isVoiceActive(VoiceType.HURT)) return;
             this.faceRetaliationTarget(target);
-            this.tryPlayVoice(TiansuluoVoiceType.ATTACK_DECLARE, this.sounds().attackDeclare(), 1.0F, 1.0F);
+            this.tryPlayVoice(VoiceType.ATTACK_DECLARE, this.sounds().get(VoiceType.ATTACK_DECLARE), 1.0F, 1.0F);
             this.retaliationDeclareTicksRemaining = this.tuning().attackDeclareDurationTicks();
             if (this.retaliationDeclareTicksRemaining <= 0) this.retaliationState = RetaliationState.RETALIATING;
         }
@@ -161,7 +162,7 @@ public class TiansuluoPinkScarfEntity extends AbstractTiansuluoEntity implements
         this.retaliationBurstCooldownTicks = 0;
         this.retaliationDeclareTicksRemaining = 0;
         if (this.getTarget() != null) this.setTarget(null);
-        if (shouldPlayEndVoice) this.tryPlayVoice(TiansuluoVoiceType.ATTACK_END, this.sounds().attackEnd(), 1.0F, 1.0F);
+        if (shouldPlayEndVoice) this.tryPlayVoice(VoiceType.ATTACK_END, this.sounds().get(VoiceType.ATTACK_END), 1.0F, 1.0F);
     }
 
     private void faceRetaliationTarget(LivingEntity target) {

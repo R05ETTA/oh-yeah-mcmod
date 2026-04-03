@@ -64,3 +64,4 @@ config/
 
 # vibe
 .vibecoding/
+.gemini/

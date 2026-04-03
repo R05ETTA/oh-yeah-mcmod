@@ -1,6 +1,8 @@
 package com.oh_yeah.entity.species;
 import com.oh_yeah.item.ModItems;
 import com.oh_yeah.sound.ModSoundEvents;
+import com.oh_yeah.sound.SoundProfile;
+import com.oh_yeah.sound.VoiceType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
@@ -20,45 +22,46 @@ public final class ModSpeciesProfiles {
             .reservedFavoriteRule(CHIPS_RULE, ModSpeciesProfiles::matchesChips)
             .build();
 
-    private static final Map<String, SpeciesSoundProfile> TIANSULUO_SOUNDS = new HashMap<>();
+    private static final Map<String, SoundProfile> TIANSULUO_SOUNDS = new HashMap<>();
 
     static {
-        SpeciesSoundProfile pinkScarf = new SpeciesSoundProfile(
-                ModSoundEvents.TIANSULUO_AMBIENT,
-                ModSoundEvents.TIANSULUO_RARE_CALL,
-                ModSoundEvents.TIANSULUO_HURT,
-                ModSoundEvents.TIANSULUO_DEATH,
-                ModSoundEvents.TIANSULUO_STEP_SOFT,
-                ModSoundEvents.TIANSULUO_EAT,
-                ModSoundEvents.TIANSULUO_EAT_FAVORITE,
-                ModSoundEvents.TIANSULUO_TEMPTED,
-                ModSoundEvents.TIANSULUO_NOTICE_PLAYER,
-                ModSoundEvents.TIANSULUO_BREED_SUCCESS,
-                ModSoundEvents.TIANSULUO_CARRY_EGG,
-                ModSoundEvents.TIANSULUO_ATTACK_SHOT,
-                ModSoundEvents.TIANSULUO_ATTACK_END,
-                ModSoundEvents.TIANSULUO_ATTACK_DECLARE,
-                ModSoundEvents.TIANSULUO_GROW_UP,
-                ModSoundEvents.TIANSULUO_SHEAR_REACT
-        );
-        SpeciesSoundProfile battleFace = new SpeciesSoundProfile(
-                ModSoundEvents.TIANSULUO_AMBIENT,
-                ModSoundEvents.TIANSULUO_RARE_CALL,
-                ModSoundEvents.TIANSULUO_HURT,
-                ModSoundEvents.TIANSULUO_DEATH,
-                ModSoundEvents.TIANSULUO_STEP_SOFT,
-                ModSoundEvents.TIANSULUO_EAT,
-                ModSoundEvents.TIANSULUO_EAT_FAVORITE,
-                ModSoundEvents.TIANSULUO_TEMPTED,
-                ModSoundEvents.TIANSULUO_NOTICE_PLAYER,
-                ModSoundEvents.TIANSULUO_BREED_SUCCESS,
-                ModSoundEvents.TIANSULUO_CARRY_EGG,
-                ModSoundEvents.TIANSULUO_ATTACK_SHOT,
-                ModSoundEvents.TIANSULUO_ATTACK_END,
-                ModSoundEvents.TIANSULUO_ATTACK_DECLARE,
-                ModSoundEvents.TIANSULUO_GROW_UP,
-                ModSoundEvents.TIANSULUO_SHEAR_REACT
-        );
+        SoundProfile pinkScarf = SoundProfile.builder()
+                .sound(VoiceType.AMBIENT, ModSoundEvents.TiansuluoPinkScarf.AMBIENT)
+                .sound(VoiceType.RARE_CALL, ModSoundEvents.TiansuluoPinkScarf.RARE_CALL)
+                .sound(VoiceType.HURT, ModSoundEvents.TiansuluoPinkScarf.HURT)
+                .sound(VoiceType.DEATH, ModSoundEvents.TiansuluoPinkScarf.DEATH)
+                .sound(VoiceType.EAT, ModSoundEvents.TiansuluoPinkScarf.EAT)
+                .sound(VoiceType.EAT_FAVORITE, ModSoundEvents.TiansuluoPinkScarf.EAT_FAVORITE)
+                .sound(VoiceType.TEMPTED, ModSoundEvents.TiansuluoPinkScarf.TEMPTED)
+                .sound(VoiceType.NOTICE_PLAYER, ModSoundEvents.TiansuluoPinkScarf.NOTICE_PLAYER)
+                .sound(VoiceType.BREED_SUCCESS, ModSoundEvents.TiansuluoPinkScarf.BREED_SUCCESS)
+                .sound(VoiceType.CARRY_EGG, ModSoundEvents.TiansuluoPinkScarf.CARRY_EGG)
+                .sound(VoiceType.ATTACK_SHOT, ModSoundEvents.TiansuluoPinkScarf.ATTACK_SHOT)
+                .sound(VoiceType.ATTACK_END, ModSoundEvents.TiansuluoPinkScarf.ATTACK_END)
+                .sound(VoiceType.ATTACK_DECLARE, ModSoundEvents.TiansuluoPinkScarf.ATTACK_DECLARE)
+                .sound(VoiceType.GROW_UP, ModSoundEvents.TiansuluoPinkScarf.GROW_UP)
+                .sound(VoiceType.SHEAR_REACT, ModSoundEvents.TiansuluoPinkScarf.SHEAR_REACT)
+                .build();
+
+        // Battle Face 保留独立实例，目前暂时复用相同音源，将来可替换为独立音频
+        SoundProfile battleFace = SoundProfile.builder()
+                .sound(VoiceType.AMBIENT, ModSoundEvents.Tiansuluo.AMBIENT)
+                .sound(VoiceType.RARE_CALL, ModSoundEvents.Tiansuluo.RARE_CALL)
+                .sound(VoiceType.HURT, ModSoundEvents.Tiansuluo.HURT)
+                .sound(VoiceType.DEATH, ModSoundEvents.Tiansuluo.DEATH)
+                .sound(VoiceType.EAT, ModSoundEvents.Tiansuluo.EAT)
+                .sound(VoiceType.EAT_FAVORITE, ModSoundEvents.Tiansuluo.EAT_FAVORITE)
+                .sound(VoiceType.TEMPTED, ModSoundEvents.Tiansuluo.TEMPTED)
+                .sound(VoiceType.NOTICE_PLAYER, ModSoundEvents.Tiansuluo.NOTICE_PLAYER)
+                .sound(VoiceType.BREED_SUCCESS, ModSoundEvents.Tiansuluo.BREED_SUCCESS)
+                .sound(VoiceType.CARRY_EGG, ModSoundEvents.Tiansuluo.CARRY_EGG)
+                .sound(VoiceType.ATTACK_SHOT, ModSoundEvents.Tiansuluo.ATTACK_SHOT)
+                .sound(VoiceType.ATTACK_END, ModSoundEvents.Tiansuluo.ATTACK_END)
+                .sound(VoiceType.ATTACK_DECLARE, ModSoundEvents.Tiansuluo.ATTACK_DECLARE)
+                .sound(VoiceType.GROW_UP, ModSoundEvents.Tiansuluo.GROW_UP)
+                .sound(VoiceType.SHEAR_REACT, ModSoundEvents.Tiansuluo.SHEAR_REACT)
+                .build();
+
         TIANSULUO_SOUNDS.put(TIANSULUO_PINK_SCARF_SOUND_PROFILE, pinkScarf);
         TIANSULUO_SOUNDS.put(TIANSULUO_BATTLE_FACE_SOUND_PROFILE, battleFace);
     }
@@ -66,8 +69,8 @@ public final class ModSpeciesProfiles {
     private ModSpeciesProfiles() {
     }
 
-    public static SpeciesSoundProfile soundsFor(String soundProfileKey) {
-        SpeciesSoundProfile profile = TIANSULUO_SOUNDS.get(soundProfileKey);
+    public static SoundProfile soundsFor(String soundProfileKey) {
+        SoundProfile profile = TIANSULUO_SOUNDS.get(soundProfileKey);
         return profile != null ? profile : TIANSULUO_SOUNDS.get(TIANSULUO_PINK_SCARF_SOUND_PROFILE);
     }
 
